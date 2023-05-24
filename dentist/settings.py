@@ -2,9 +2,15 @@ import os
 import django_heroku
 import dj_database_url
 from decouple import config
+import environ
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+#Read environment variables
+env = environ.Env()
+environ.Env.read_env()
 
 
 # Quick-start development settings - unsuitable for production
@@ -124,8 +130,8 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Email Settings
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'johne4196@gmail.com'
-EMAIL_HOST_PASSWORD = ''
+EMAIL_HOST_USER = env('EMAIL_USER')
+EMAIL_HOST_PASSWORD = env("EMAIL_PASSW")
 EMAIL_USE_TLS = True
 # EMAIL_USE_SSL = False 
 
