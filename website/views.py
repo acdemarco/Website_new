@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from django.core.mail import send_mail
+from django.conf import settings
+
+#print settings.MY_SETTING
 
 def home(request):
 	return render(request, 'home.html', {})
@@ -15,7 +18,7 @@ def contact(request):
 			message_name, # subject
 			message, # message
 			message_email, # from email
-			['acdemarco@yahoo.com'], # To Email
+			[settings.EMAIL_SITE_OWNER], # To Email
 			)
 
 		return render(request, 'contact.html', {'message_name': message_name})
@@ -51,7 +54,7 @@ def appointment(request):
 			'Appointment Request', # subject
 			appointment, # message
 			your_email, # from email
-			['john@codemy.com'], # To Email
+			['acdemarco@yahoo.com'], # To Email
 			)
 		
 		return render(request, 'appointment.html', {
